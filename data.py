@@ -5,6 +5,8 @@ import os
 import random
 import numpy as np
 from config import tag2label
+from tqdm import tqdm
+from glob import glob
 
 
 def read_corpus(corpus_path):
@@ -18,7 +20,7 @@ def read_corpus(corpus_path):
     with open(corpus_path, encoding='utf-8') as fr:
         lines = fr.readlines()
     sent_, tag_ = [], []
-    for i, line in enumerate(lines):
+    for i, line in enumerate(tqdm(lines)):
         if line != '\n':
             [char, label] = line.replace('\n', '').strip().split('\t')
             sent_.append(char)
